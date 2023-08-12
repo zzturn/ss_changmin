@@ -1,0 +1,12 @@
+services:
+  postgres:
+    image: 'postgres:14'
+    environment:
+      - 'POSTGRES_DB=cm_backend'
+      - 'POSTGRES_PASSWORD=changmin'
+      - 'POSTGRES_USER=postgres'
+    volumes:
+      - ./cm_db:/var/lib/postgresql/data
+    ports:
+      - '6543:5432'
+
