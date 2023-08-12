@@ -1,0 +1,36 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://127.0.0.1:6543/cm_backend
+    username: postgres
+    password: changmin
+  flyway:
+    enabled: true
+
+logging:
+  file:
+    name: /volume/log/cm_backend_service_linux.log
+  level:
+    com:
+      changmin:
+        cm_backend:
+          mapper: debug
+
+swagger:
+  enable: true
+
+social:
+  wechat:
+    client-id: 
+    client-secret: 
+    redirect-uri: 
+  mp:
+    client-id: 
+    client-secret: 
+    redirect-uri: 
+  miniapp:
+    appid:
+    secret:
+    artwork-page:
+    check-path: true
+    env-version: release

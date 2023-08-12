@@ -1,0 +1,51 @@
+spring:
+  profiles:
+    active: linux
+  servlet:
+    multipart:
+      max-file-size: 1024MB
+      max-request-size: 1024MB
+  flyway:
+    clean-disabled: true #??????true??????false -> ?????????????
+  messages:
+    basename: internationalization.exception,internationalization.notification,internationalization.validation,internationalization.hint,internationalization.word
+    encoding: UTF-8
+    fallback-to-system-locale: false
+
+server:
+  port: 9901
+
+logging:
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:%5p} ${PID:- } --- [%15.15t] %-40.40logger{39} : %m%n"
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n"
+
+backend:
+  authorization-field: XAuthorization
+
+mybatis:
+  type-handlers-package: com.changmin.cm_backend.typehandlers
+  mapper-locations: classpath:mapper/*.xml
+
+# MyBatis Plus ????
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true # ????? true ????????????
+  global-config:
+    db-config:
+      id-type: ASSIGN_ID # ?? ID?????????????Oracle?PostgreSQL?Kingbase?DB2?H2 ?????????????? @KeySequence ??
+      logic-delete-value: true # ??????(??? 1)
+      logic-not-delete-value: false # ??????(??? 0)
+  type-aliases-package: com.changmin.cm_backend.model.pojo
+  encryptor:
+    password: 71pEA4BZ7D927aFE # ?????????? https://www.imaegoo.com/2020/aes-key-generator/ ????
+
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui
+
