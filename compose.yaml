@@ -10,3 +10,7 @@ services:
     ports:
       - '6543:5432'
 
+  backend:
+    image: 'cm_backend:latest'
+    ports:
+      - '9901:9901'

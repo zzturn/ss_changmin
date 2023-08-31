@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://127.0.0.1:6543/cm_backend
+    url: jdbc:postgresql://postgres:5432/cm_backend
     username: postgres
     password: changmin
   flyway:
@@ -21,16 +21,16 @@ swagger:
 
 social:
   wechat:
-    client-id: 
-    client-secret: 
-    redirect-uri: 
+    client-id:
+    client-secret:
+    redirect-uri:
   mp:
-    client-id: 
-    client-secret: 
-    redirect-uri: 
+    client-id:
+    client-secret:
+    redirect-uri:
   miniapp:
-    appid: 
-    secret: 
+    appid:
+    secret:
     artwork-page:
     check-path: true
     env-version: release

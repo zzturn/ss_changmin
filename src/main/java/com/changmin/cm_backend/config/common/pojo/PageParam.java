@@ -1,12 +1,11 @@
 package com.changmin.cm_backend.config.common.pojo;
 
 import io.swagger.annotations.ApiModelProperty;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
-import lombok.Data;
-
 import java.io.Serializable;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import lombok.Data;
 
 @Data
 public class PageParam implements Serializable {

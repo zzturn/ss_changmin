@@ -2,7 +2,7 @@ package com.changmin.cm_backend.model.vo;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
-import jakarta.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

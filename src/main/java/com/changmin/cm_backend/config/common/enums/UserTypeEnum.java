@@ -3,10 +3,9 @@ package com.changmin.cm_backend.config.common.enums;
 import cn.hutool.core.util.ArrayUtil;
 import com.changmin.cm_backend.config.common.core.StringArrayValuable;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import java.util.Arrays;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-
-import java.util.Arrays;
 
 /** 全局用户类型枚举 */
 @AllArgsConstructor
@@ -33,7 +32,7 @@ public enum UserTypeEnum implements StringArrayValuable {
     return ARRAYS;
   }
 
-  @JsonCreator
+  @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
   public static UserTypeEnum from(Integer value) {
     for (UserTypeEnum item : UserTypeEnum.values()) {
       if (item.getValue().equals(value)) {

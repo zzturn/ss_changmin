@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.changmin.cm_backend.mapper.WuxingMapper">
+
+    <resultMap type="com.changmin.cm_backend.model.pojo.WuxingDO" id="WuxingMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="createTimeUtc" column="create_time_utc" jdbcType="TIMESTAMP"/>
+        <result property="updateTimeUtc" column="update_time_utc" jdbcType="TIMESTAMP"/>
+        <result property="creator" column="creator" jdbcType="VARCHAR"/>
+        <result property="updater" column="updater" jdbcType="VARCHAR"/>
+        <result property="deleted" column="deleted" jdbcType="BOOLEAN"/>
+        <result property="data" column="data" jdbcType="VARCHAR"/>
+        <result property="areaValue" column="area_value" jdbcType="NUMERIC"/>
+        <result property="price" column="price" jdbcType="INTEGER"/>
+        <result property="yongTu" column="yong_tu" jdbcType="VARCHAR"/>
+        <result property="area" column="area" jdbcType="VARCHAR"/>
+        <result property="fengGe" column="feng_ge" jdbcType="VARCHAR"/>
+        <result property="roof" column="roof" jdbcType="VARCHAR"/>
+        <result property="roomCount" column="room_count" jdbcType="VARCHAR"/>
+        <result property="canCustom" column="can_custom" jdbcType="BOOLEAN"/>
+    </resultMap>
+
+</mapper>
+

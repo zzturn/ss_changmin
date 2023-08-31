@@ -6,13 +6,18 @@ import com.changmin.cm_backend.config.common.enums.UserTypeEnum;
 import com.changmin.cm_backend.model.pojo.UserDO;
 import com.changmin.cm_backend.model.vo.AuthLoginRespVO;
 import com.changmin.cm_backend.model.vo.AuthMiniappLoginReqVO;
-import jakarta.validation.constraints.NotNull;
+import com.changmin.cm_backend.model.vo.AuthRegisterReqVO;
+import javax.validation.constraints.NotNull;
 
 public interface UserService {
+
+  UserDO getUserByMobile(String mobile);
 
   UserDO create(String mobile, String email, String pwEncode, UserTypeEnum userType, String openid);
 
   UserDO login(String code, @NotNull WxMaJscode2SessionResult sessionInfo, WxMaUserInfo userInfo);
 
   AuthLoginRespVO miniappLogin(AuthMiniappLoginReqVO reqVO);
+
+  AuthLoginRespVO register(AuthRegisterReqVO reqVO);
 }

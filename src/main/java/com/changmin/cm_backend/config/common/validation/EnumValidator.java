@@ -2,14 +2,13 @@ package com.changmin.cm_backend.config.common.validation;
 
 
 import com.changmin.cm_backend.config.common.core.StringArrayValuable;
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 
 public class EnumValidator implements ConstraintValidator<InEnum, Object> {
 

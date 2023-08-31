@@ -1,7 +1,6 @@
 package com.changmin.cm_backend.service;
 
-import static com.changmin.cm_backend.exceptions.ErrorCodeConstants.AUTH_MINIAPP_MOBILE_PARSE_ERROR;
-import static com.changmin.cm_backend.exceptions.ErrorCodeConstants.AUTH_MINIAPP_SESSION_PARSE_ERROR;
+import static com.changmin.cm_backend.exceptions.ErrorCodeConstants.*;
 
 import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
@@ -18,13 +17,15 @@ import com.changmin.cm_backend.model.pojo.UserDO;
 import com.changmin.cm_backend.model.vo.AuthLoginRespVO;
 import com.changmin.cm_backend.model.vo.AuthMiniappDataVO;
 import com.changmin.cm_backend.model.vo.AuthMiniappLoginReqVO;
-import jakarta.validation.constraints.NotNull;
+import com.changmin.cm_backend.model.vo.AuthRegisterReqVO;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Resource;
+import javax.validation.constraints.NotNull;
 import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.error.WxErrorException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -36,6 +37,8 @@ public class UserServiceImpl implements UserService {
   @Autowired TokenService tokenService;
 
   @Resource private WxMaService wxMaService;
+
+  @Resource private PasswordEncoder passwordEncoder;
 
   @Override
   public AuthLoginRespVO miniappLogin(AuthMiniappLoginReqVO reqVO) {
@@ -74,6 +77,25 @@ public class UserServiceImpl implements UserService {
       userDO = create("", "", "", UserTypeEnum.MEMBER, openid);
     }
     return createTokenAfterLoginSuccess(userDO);
+  }
+
+  @Override
+  public AuthLoginRespVO register(AuthRegisterReqVO reqVO) {
+    UserDO user = getUserByMobile(reqVO.getMobile());
+    if (Objects.nonNull(user)) {
+      throw new BusinessException(USER_MOBILE_EXISTS);
+    }
+    String password = reqVO.getPassword();
+    String passwordEncoded = Objects.isNull(password) ? null : passwordEncoder.encode(password);
+
+    UserDO userDO = this.create(reqVO.getMobile(), null, passwordEncoded, UserTypeEnum.MEMBER, "");
+
+    return createTokenAfterLoginSuccess(userDO);
+  }
+
+  @Override
+  public UserDO getUserByMobile(String mobile) {
+    return userMapper.selectOne(UserDO::getMobile, mobile);
   }
 
   @Override
