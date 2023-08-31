@@ -1,13 +1,12 @@
 package com.changmin.cm_backend.config.security.config;
 
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
+import java.util.Collections;
+import java.util.List;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.validation.annotation.Validated;
-
-import java.util.Collections;
-import java.util.List;
 
 @ConfigurationProperties(prefix = "aibackend.security")
 @Validated

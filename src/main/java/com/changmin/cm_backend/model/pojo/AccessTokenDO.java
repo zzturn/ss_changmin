@@ -28,8 +28,8 @@ import lombok.*;
 public class AccessTokenDO extends BaseDO {
 
   /** 编号，数据库递增 */
-  @TableId(type = IdType.ASSIGN_UUID)
-  private String id;
+  @TableId(type = IdType.ASSIGN_ID)
+  private Long id;
   /** 访问令牌 */
   private String accessToken;
   /** 刷新令牌 */
@@ -53,6 +53,4 @@ public class AccessTokenDO extends BaseDO {
   @TableField(typeHandler = JacksonTypeHandler.class)
   private Map<String, Object> userContext;
 
-  /** 最长过期时间 */
-  private Date maxExpiresTimeUtc;
 }

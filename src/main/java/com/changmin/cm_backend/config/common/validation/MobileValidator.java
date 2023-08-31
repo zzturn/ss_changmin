@@ -2,9 +2,8 @@ package com.changmin.cm_backend.config.common.validation;
 
 import cn.hutool.core.util.StrUtil;
 import com.changmin.cm_backend.config.common.util.validation.ValidationUtils;
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
-
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 
 public class MobileValidator implements ConstraintValidator<Mobile, String> {
 

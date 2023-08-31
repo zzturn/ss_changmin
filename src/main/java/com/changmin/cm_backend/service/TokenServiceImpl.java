@@ -10,15 +10,9 @@ import com.changmin.cm_backend.mapper.OAuth2AccessTokenMapper;
 import com.changmin.cm_backend.model.pojo.AccessTokenDO;
 import com.changmin.cm_backend.model.pojo.UserDO;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 import javax.annotation.Resource;
-
-import jakarta.validation.constraints.NotNull;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -61,7 +55,6 @@ public class TokenServiceImpl implements TokenService {
             .scopes(null)
             .refreshToken(null)
             .expiresTimeUtc(expiresTime)
-            .maxExpiresTimeUtc(maxExpiresTime)
             .build();
 
     oauth2AccessTokenMapper.insert(accessTokenDO);
@@ -113,18 +106,8 @@ public class TokenServiceImpl implements TokenService {
             securityProperties.getTokenHeader());
     // 更新 token 有效期
     String tokenKey = String.format(TOKEN_EXPIRE_UPDATE_LOCK_KEY_FORMAT, token);
-    updateTokenExpire(token);
   }
-
-  @Override
-  public void updateTokenExpire(@NotNull String token) {
-    AccessTokenDO accessToken = getAccessToken(token);
-    oauth2AccessTokenMapper.updateExpiresTimeUtcByAccessToken(
-        token,
-        DateUtils.min(
-            accessToken.getMaxExpiresTimeUtc(),
-            new Date(System.currentTimeMillis() + DEFAULT_EXPIRES_IN)));
-  }
+  
 
   private static String generateAccessToken() {
     return IdUtil.fastSimpleUUID();

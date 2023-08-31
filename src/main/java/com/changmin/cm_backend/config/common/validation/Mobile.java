@@ -1,9 +1,8 @@
 package com.changmin.cm_backend.config.common.validation;
 
-import jakarta.validation.Constraint;
-import jakarta.validation.Payload;
-
 import java.lang.annotation.*;
+import javax.validation.Constraint;
+import javax.validation.Payload;
 
 @Target({
   ElementType.METHOD,

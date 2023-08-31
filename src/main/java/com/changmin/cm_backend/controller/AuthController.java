@@ -3,6 +3,7 @@ package com.changmin.cm_backend.controller;
 import com.changmin.cm_backend.config.common.pojo.Resp;
 import com.changmin.cm_backend.model.vo.AuthLoginRespVO;
 import com.changmin.cm_backend.model.vo.AuthMiniappLoginReqVO;
+import com.changmin.cm_backend.model.vo.AuthRegisterReqVO;
 import com.changmin.cm_backend.service.UserService;
 import io.swagger.annotations.Api;
 import javax.annotation.security.PermitAll;
@@ -20,7 +21,7 @@ public class AuthController {
 
   @Autowired UserService userService;
 
-  @GetMapping("")
+  @GetMapping("/validate")
   public Resp<String> get() {
     return Resp.data("hello");
   }
@@ -31,7 +32,15 @@ public class AuthController {
     return Resp.data("hello");
   }
 
-  public Resp<AuthLoginRespVO> miniappLogin(AuthMiniappLoginReqVO reqVO) {
+  @PostMapping("/miniapp/login")
+  @PermitAll
+  public Resp<AuthLoginRespVO> miniappLogin(@RequestBody AuthMiniappLoginReqVO reqVO) {
     return Resp.data(userService.miniappLogin(reqVO));
+  }
+
+  @PostMapping("/register")
+  @PermitAll
+  public Resp<AuthLoginRespVO> register(@RequestBody AuthRegisterReqVO reqVO) {
+    return Resp.data(userService.register(reqVO));
   }
 }

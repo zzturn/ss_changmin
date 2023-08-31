@@ -2,7 +2,6 @@ package com.changmin.cm_backend.service;
 
 import com.changmin.cm_backend.model.pojo.AccessTokenDO;
 import com.changmin.cm_backend.model.pojo.UserDO;
-import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -24,6 +23,5 @@ public interface TokenService {
 
   void updateCurrentTokenExpire();
 
-  void updateTokenExpire(String token);
   // 删除访问令牌
 }
