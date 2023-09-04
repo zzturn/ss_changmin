@@ -26,10 +26,6 @@
         <aliyun-sdk-oss.version>3.10.2</aliyun-sdk-oss.version>
         <guava.version>29.0-jre</guava.version>
         <jna.version>5.8.0</jna.version>
-        <!--docker build-->
-        <docker.repo>backend</docker.repo>
-        <dockerfile.skip>false</dockerfile.skip>
-        <docker.tag>latest</docker.tag>
 
         <checkstyle.config.location>google_checks.xml</checkstyle.config.location>
         <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
@@ -57,6 +53,9 @@
         <mybatis-plus-generator.version>3.5.3.1</mybatis-plus-generator.version>
         <dynamic-datasource.version>3.6.1</dynamic-datasource.version>
         <mapstruct.version>1.5.3.Final</mapstruct.version>
+
+        <docker.repository>zturnxin/ss</docker.repository>
+        <docker.tag>latest</docker.tag>
     </properties>
 
     <dependencies>
@@ -280,37 +279,36 @@
             <!-- 构建docker镜像 -->
             <plugin>
                 <groupId>com.spotify</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>1.2.2</version>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+                <version>1.4.13</version>
                 <executions>
                     <execution>
-                        <id>build-image</id>
+                        <id>build-push-latest-image</id>
                         <phase>package</phase>
                         <goals>
                             <goal>build</goal>
+                            <goal>push</goal>
                         </goals>
+                        <configuration>
+                            <tag>${project.artifactId}_latest</tag>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>build-push-version-image</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                            <goal>push</goal>
+                        </goals>
+                        <configuration>
+                            <tag>${project.artifactId}_${project.version}</tag>
+                        </configuration>
                     </execution>
                 </executions>
                 <configuration>
                     <!-- image 的名字 -->
-                    <imageName>${project.artifactId}</imageName>
-                    <!-- image 的tag, 可以是多个 -->
-                    <imageTags>
-                        <imageTag>latest</imageTag>
-                        <imageTag>${project.version}</imageTag>
-                    </imageTags>
-                    <!-- Dockerfile所在的目录 -->
-                    <dockerDirectory>${project.basedir}</dockerDirectory>
-                    <!-- 复制jar到docker的位置 -->
-                    <resources>
-                        <resource>
-                            <targetPath>/</targetPath>
-                            <!--jar 包所在的路径，对应target目录-->
-                            <directory>${project.build.directory}</directory>
-                            <!-- 包含的jar　-->
-                            <include>${project.build.finalName}.jar</include>
-                        </resource>
-                    </resources>
+                    <repository>${docker.repository}</repository>
+                    <contextDirectory>${project.basedir}</contextDirectory>
                     <buildArgs>
                         <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
                     </buildArgs>
