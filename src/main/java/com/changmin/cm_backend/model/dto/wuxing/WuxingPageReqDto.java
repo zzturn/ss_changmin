@@ -3,6 +3,7 @@ package com.changmin.cm_backend.model.dto.wuxing;
 import com.changmin.cm_backend.config.common.pojo.PageParam;
 import com.changmin.cm_backend.model.enums.*;
 import java.util.List;
+import javax.validation.constraints.NotNull;
 import lombok.*;
 
 @Data
@@ -23,6 +24,7 @@ public class WuxingPageReqDto extends PageParam {
 
   private Boolean canCustom;
 
+  @NotNull
   private SortFieldEnum sortField = SortFieldEnum.CreateTimeUtc;
 
   private Boolean sortAsc = false;

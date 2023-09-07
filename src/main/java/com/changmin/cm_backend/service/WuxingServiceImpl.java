@@ -135,11 +135,11 @@ public class WuxingServiceImpl implements WuxingService {
                 !Boolean.TRUE.equals(dto.getDisableCompleteFilter()),
                 WuxingDO::getXianChangZhaoPianUrl)
             .isNotNull(
-                !Boolean.TRUE.equals(dto.getDisableCompleteFilter()), WuxingDO::getJianZhuTuMianUrl)
-            .orderBy(
-                Objects.nonNull(dto.getSortField()),
-                dto.getSortAsc(),
-                dto.getSortField().getField());
+                !Boolean.TRUE.equals(dto.getDisableCompleteFilter()),
+                WuxingDO::getJianZhuTuMianUrl);
+    if (Objects.nonNull(dto.getSortField())) {
+      queryWrapper.orderBy(true, dto.getSortAsc(), dto.getSortField().getField());
+    }
     PageResult<WuxingDO> pageResult = wuxingMapper.selectPage(dto, queryWrapper);
     return new PageResult<>(
         WuxingConvert.INSTANCE.convertList(pageResult.getList()), pageResult.getTotal());
