@@ -154,34 +154,49 @@ COMMENT
 ON TABLE "public"."user" IS '用户信息表';
 
 
-CREATE TABLE IF NOT EXISTS "public"."wuxing"
-(
-    "id"               int8                                        NOT NULL,
-    "create_time_utc"  timestamp(6)                                NOT NULL,
-    "update_time_utc"  timestamp(6)                                NOT NULL,
-    "creator"          varchar COLLATE "pg_catalog"."default",
-    "updater"          varchar COLLATE "pg_catalog"."default",
-    "deleted"          bool                                        NOT NULL DEFAULT false,
-
-    CONSTRAINT "wuxing_pkey" PRIMARY KEY ("id")
-    )
+CREATE TABLE "public"."wuxing" (
+   "id" varchar COLLATE "pg_catalog"."default" NOT NULL,
+   "create_time_utc" timestamp(6) NOT NULL,
+   "update_time_utc" timestamp(6) NOT NULL,
+   "creator" varchar COLLATE "pg_catalog"."default",
+   "updater" varchar COLLATE "pg_catalog"."default",
+   "deleted" bool NOT NULL DEFAULT false,
+   "data" varchar COLLATE "pg_catalog"."default",
+   "area_value" float8,
+   "price" int8,
+   "yong_tu" varchar COLLATE "pg_catalog"."default",
+   "area" varchar COLLATE "pg_catalog"."default",
+   "feng_ge" varchar COLLATE "pg_catalog"."default",
+   "roof" varchar COLLATE "pg_catalog"."default",
+   "room_count" varchar COLLATE "pg_catalog"."default",
+   "can_custom" bool,
+   "type" varchar COLLATE "pg_catalog"."default",
+   "cover_url" varchar COLLATE "pg_catalog"."default",
+   "xian_chang_zhao_pian_url" varchar COLLATE "pg_catalog"."default",
+   "jian_zhu_tu_mian_url" varchar COLLATE "pg_catalog"."default",
+   CONSTRAINT "wuxing_pkey" PRIMARY KEY ("id")
+)
 ;
 
-CREATE TABLE IF NOT EXISTS "public"."cart"
-(
-    "id"               int8                                        NOT NULL,
-    "create_time_utc"  timestamp(6)                                NOT NULL,
-    "update_time_utc"  timestamp(6)                                NOT NULL,
-    "creator"          varchar COLLATE "pg_catalog"."default",
-    "updater"          varchar COLLATE "pg_catalog"."default",
-    "deleted"          bool                                        NOT NULL DEFAULT false,
-    "user_id"          varchar COLLATE "pg_catalog"."default"      NOT NULL,
-    "product_type"     varchar COLLATE "pg_catalog"."default"      NOT NULL,
+ALTER TABLE "public"."wuxing"
+    OWNER TO "postgres";
 
-    CONSTRAINT "cart_pkey" PRIMARY KEY ("id")
-    )
-;
+COMMENT ON COLUMN "public"."wuxing"."area_value" IS '面积';
 
-CREATE INDEX "cart_user_id_idx" ON "public"."cart" USING btree (
-    "user_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-    );
+COMMENT ON COLUMN "public"."wuxing"."price" IS '价格';
+
+COMMENT ON COLUMN "public"."wuxing"."yong_tu" IS '用途';
+
+COMMENT ON COLUMN "public"."wuxing"."area" IS '面积枚举';
+
+COMMENT ON COLUMN "public"."wuxing"."feng_ge" IS '风格';
+
+COMMENT ON COLUMN "public"."wuxing"."roof" IS '屋顶';
+
+COMMENT ON COLUMN "public"."wuxing"."room_count" IS '房间数类型';
+
+COMMENT ON COLUMN "public"."wuxing"."can_custom" IS '能否定制';
+
+COMMENT ON COLUMN "public"."wuxing"."type" IS '官方or用户保存的';
+
+COMMENT ON COLUMN "public"."wuxing"."cover_url" IS '封面';

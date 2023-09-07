@@ -19,9 +19,9 @@ import lombok.ToString;
 @SwaggerDisplayEnum
 @ToString
 public enum SortFieldEnum implements StringArrayValuable {
-  Default("Default", "无", WuxingDO::getCreateTimeUtc),
+  CreateTimeUtc("CreateTimeUtc", "创建时间", WuxingDO::getCreateTimeUtc),
   Price("Price", "价格", WuxingDO::getPrice),
-  Area("Area", "面积", WuxingDO::getArea),
+  Area("Area", "面积", WuxingDO::getAreaValue),
   ;
 
   private final String value;

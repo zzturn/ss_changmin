@@ -7,7 +7,7 @@ import java.util.List;
 public interface WuxingService {
   WuxingItemDto get(String id);
 
-  void createBatch(List<WuxingCreateReqDto> dto);
+  List<String> createBatch(List<WuxingCreateReqDto> dto);
 
   String saveWuxing(WuxingCreateReqDto dto);
 

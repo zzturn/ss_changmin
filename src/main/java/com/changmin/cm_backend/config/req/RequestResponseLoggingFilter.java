@@ -1,11 +1,11 @@
 package com.changmin.cm_backend.config.req;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
-
+import java.io.IOException;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+import org.springframework.web.util.ContentCachingRequestWrapper;
 
 @Slf4j
 @Component
@@ -16,13 +16,12 @@ public class RequestResponseLoggingFilter implements Filter {
       throws IOException, ServletException {
 
     HttpServletRequest req = (HttpServletRequest) request;
-    //    log.info(
-    //        "-------------------- request [{}] parameter [{}] with method [{}]
-    // --------------------",
-    //        req.getRequestURI(),
-    //        req.getQueryString(),
-    //        req.getMethod());
-    //        ContentCachingRequestWrapper wrapper = new ContentCachingRequestWrapper(req);
+        log.info(
+            "-------------------- request [{}] parameter [{}] with method [{}] --------------------",
+            req.getRequestURI(),
+            req.getQueryString(),
+            req.getMethod());
+            ContentCachingRequestWrapper wrapper = new ContentCachingRequestWrapper(req);
     chain.doFilter(req, response);
     //    log.info(
     //        "-------------------- request [{}] ended in [{}], return type [{}] with status code

@@ -18,7 +18,6 @@ import lombok.ToString;
 @SwaggerDisplayEnum
 @ToString
 public enum FengGeEnum implements StringArrayValuable {
-  None( "None", "无"),
   TianYuan("TianYuan", "田園風光"),
   EuropeStyle("EuropeStyle", "歐式風情"),
   CountryHuaiJiu("CountryHuaiJiu", "鄉村懷舊"),

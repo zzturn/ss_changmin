@@ -50,4 +50,13 @@ public class WuxingDO extends BaseDO {
 
   // 能否定制
   private Boolean canCustom;
+
+  // 封面
+  private String coverUrl;
+
+  // 现场照片
+  private String xianChangZhaoPianUrl;
+
+  // 建筑图面
+  private String jianZhuTuMianUrl;
 }

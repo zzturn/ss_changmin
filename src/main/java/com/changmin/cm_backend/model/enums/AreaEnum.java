@@ -17,7 +17,6 @@ import lombok.ToString;
 @SwaggerDisplayEnum
 @ToString
 public enum AreaEnum implements StringArrayValuable {
-  None("None", " 无"),
   smaller100("smaller100", " <100"),
   range_100_200("range_100_200", " 住宅"),
   range_200_400("range_200_400", " 公建集合"),
