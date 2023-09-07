@@ -48,7 +48,7 @@ public class SwaggerConfig {
                 Arrays.asList(new ApiKey("token", securityProperties.getTokenHeader(), "")));
     // 解决dev环境下无法直接使用swagger的问题
     if (Arrays.asList(environment.getActiveProfiles()).contains("prod")) {
-      docket.pathMapping("/ai_backend");
+      docket.pathMapping("/backend");
     }
     return docket;
   }
