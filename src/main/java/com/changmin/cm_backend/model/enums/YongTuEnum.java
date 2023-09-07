@@ -18,7 +18,6 @@ import lombok.ToString;
 @SwaggerDisplayEnum
 @ToString
 public enum YongTuEnum implements StringArrayValuable {
-  None("None", "无"),
   MingShu("MingShu", "民宿"),
   ZhuZhai("ZhuZhai", "住宅"),
   GongZuoShi("GongZuoShi", "工作室"),

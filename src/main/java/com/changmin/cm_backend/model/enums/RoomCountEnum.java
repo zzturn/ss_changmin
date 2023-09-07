@@ -18,7 +18,6 @@ import lombok.ToString;
 @SwaggerDisplayEnum
 @ToString
 public enum RoomCountEnum implements StringArrayValuable {
-  None("None", "不筛选"),
   R_1("R_1","R_1"),
   R_2("R_2","R_2"),
   R_3("R_3","R_3"),

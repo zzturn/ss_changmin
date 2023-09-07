@@ -35,4 +35,13 @@ public class WuxingBaseDto {
 
   @ApiModelProperty(value = "类型")
   private WuxingTypeEnum type;
+
+  @ApiModelProperty(value = "封面")
+  private String coverUrl;
+
+  @ApiModelProperty(value = "现场照片")
+  private String xianChangZhaoPianUrl;
+
+  @ApiModelProperty(value = "建筑图面")
+  private String jianZhuTuMianUrl;
 }

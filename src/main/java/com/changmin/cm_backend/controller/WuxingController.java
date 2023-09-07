@@ -10,7 +10,6 @@ import javax.annotation.Resource;
 import javax.annotation.security.PermitAll;
 import javax.validation.Valid;
 import org.springframework.web.bind.annotation.*;
-import springfox.documentation.annotations.ApiIgnore;
 
 @RestController
 @RequestMapping("/v1/wuxing")
@@ -41,14 +40,13 @@ public class WuxingController {
   @ApiOperation(value = "批量上传")
   @PermitAll
   @PostMapping("/batch_upload")
-  public Resp<Boolean> create(@Valid @RequestBody List<WuxingCreateReqDto> dto) {
-    wuxingService.createBatch(dto);
-    return Resp.data(Boolean.TRUE);
+  public Resp<List<String>> create(@Valid @RequestBody List<WuxingCreateReqDto> dto) {
+    return Resp.data(wuxingService.createBatch(dto));
   }
 
   @PutMapping("/update")
+  @PermitAll
   @ApiOperation(value = "修改")
-  @ApiIgnore
   public Resp<Void> update(@Valid @RequestBody WuxingUpdateReqDto dto) {
     wuxingService.update(dto);
     return Resp.ok();

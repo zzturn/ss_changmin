@@ -11,6 +11,6 @@ services:
       - '6543:5432'
 
   backend:
-    image: 'cm_backend:latest'
+    image: 'zturnxin/ss:cm_backend_latest'
     ports:
       - '9901:9901'

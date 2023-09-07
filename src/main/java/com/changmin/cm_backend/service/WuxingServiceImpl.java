@@ -15,6 +15,7 @@ import com.changmin.cm_backend.util.LoginUserUtil;
 import com.changmin.cm_backend.util.WebFrameworkUtils;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -41,9 +42,10 @@ public class WuxingServiceImpl implements WuxingService {
    * 管理员批量上传 todo 需要验证token
    *
    * @param dto
+   * @return
    */
   @Override
-  public void createBatch(List<WuxingCreateReqDto> dto) {
+  public List<String> createBatch(List<WuxingCreateReqDto> dto) {
     String token =
         SecurityFrameworkUtils.obtainAuthorization(
             WebFrameworkUtils.getRequest(), securityProperties.getTokenHeader());
@@ -53,6 +55,8 @@ public class WuxingServiceImpl implements WuxingService {
     List<WuxingDO> dataDo = WuxingConvert.INSTANCE.convertCreateList(dto);
     dataDo.forEach(x -> x.setType(WuxingTypeEnum.OFFICIAL.getValue()));
     wuxingMapper.insertBatch(dataDo);
+    List<String> ids = dataDo.stream().map(WuxingDO::getId).collect(Collectors.toList());
+    return ids;
   }
 
   /**
@@ -89,6 +93,12 @@ public class WuxingServiceImpl implements WuxingService {
 
   @Override
   public void update(WuxingUpdateReqDto dto) {
+    String token =
+        SecurityFrameworkUtils.obtainAuthorization(
+            WebFrameworkUtils.getRequest(), securityProperties.getTokenHeader());
+    if (!ADMIN_TOKEN.equals(token)) {
+      throw ErrorCodeConstants.FORBIDDEN;
+    }
     wuxingMapper.updateById(WuxingConvert.INSTANCE.convert(dto));
   }
 
@@ -120,6 +130,12 @@ public class WuxingServiceImpl implements WuxingService {
             .in(CollUtil.isNotEmpty(dto.getYongTu()), WuxingDO::getYongTu, dto.getYongTu())
             .in(CollUtil.isNotEmpty(dto.getRoomCount()), WuxingDO::getRoomCount, dto.getRoomCount())
             .in(CollUtil.isNotEmpty(dto.getFengGe()), WuxingDO::getFengGe, dto.getFengGe())
+            .isNotNull(!Boolean.TRUE.equals(dto.getDisableCompleteFilter()), WuxingDO::getCoverUrl)
+            .isNotNull(
+                !Boolean.TRUE.equals(dto.getDisableCompleteFilter()),
+                WuxingDO::getXianChangZhaoPianUrl)
+            .isNotNull(
+                !Boolean.TRUE.equals(dto.getDisableCompleteFilter()), WuxingDO::getJianZhuTuMianUrl)
             .orderBy(
                 Objects.nonNull(dto.getSortField()),
                 dto.getSortAsc(),

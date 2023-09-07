@@ -18,7 +18,6 @@ import lombok.ToString;
 @SwaggerDisplayEnum
 @ToString
 public enum RoofTypesEnum implements StringArrayValuable {
-  None("None", "不筛选"),
   P("P", "单坡"),
   H("H", "双坡同坡（缓）"),
   J("J", "双坡同坡（尖）"),
