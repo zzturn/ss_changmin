@@ -287,23 +287,23 @@
                         <phase>package</phase>
                         <goals>
                             <goal>build</goal>
-                            <goal>push</goal>
+                            <!--                            <goal>push</goal>-->
                         </goals>
                         <configuration>
                             <tag>${project.artifactId}_latest</tag>
                         </configuration>
                     </execution>
-                    <execution>
-                        <id>build-push-version-image</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>build</goal>
-                            <goal>push</goal>
-                        </goals>
-                        <configuration>
-                            <tag>${project.artifactId}_${project.version}</tag>
-                        </configuration>
-                    </execution>
+                    <!--                    <execution>-->
+                    <!--                        <id>build-push-version-image</id>-->
+                    <!--                        <phase>package</phase>-->
+                    <!--                        <goals>-->
+                    <!--                            <goal>build</goal>-->
+                    <!--                            <goal>push</goal>-->
+                    <!--                        </goals>-->
+                    <!--                        <configuration>-->
+                    <!--                            <tag>${project.artifactId}_${project.version}</tag>-->
+                    <!--                        </configuration>-->
+                    <!--                    </execution>-->
                 </executions>
                 <configuration>
                     <!-- image 的名字 -->
