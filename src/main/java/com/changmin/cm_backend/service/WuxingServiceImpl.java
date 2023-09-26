@@ -133,6 +133,7 @@ public class WuxingServiceImpl implements WuxingService {
     LambdaQueryWrapper<WuxingDO> queryWrapper =
         new LambdaQueryWrapper<WuxingDO>()
             .eq(WuxingDO::getType, WuxingTypeEnum.OFFICIAL.getValue())
+            .eq(!Objects.nonNull(dto.getCanCustom()), WuxingDO::getCanCustom, dto.getCanCustom())
             .in(CollUtil.isNotEmpty(dto.getRoof()), WuxingDO::getRoof, dto.getRoof())
             .in(CollUtil.isNotEmpty(dto.getArea()), WuxingDO::getArea, dto.getArea())
             .in(CollUtil.isNotEmpty(dto.getYongTu()), WuxingDO::getYongTu, dto.getYongTu())
