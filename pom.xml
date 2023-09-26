@@ -284,10 +284,10 @@
                 <executions>
                     <execution>
                         <id>build-push-latest-image</id>
-                        <phase>deploy</phase>
+                        <phase>install</phase>
                         <goals>
                             <goal>build</goal>
-                            <!--                            <goal>push</goal>-->
+                            <goal>push</goal>
                         </goals>
                         <configuration>
                             <tag>${project.artifactId}_latest</tag>
@@ -295,7 +295,7 @@
                     </execution>
                     <execution>
                         <id>build-push-version-image</id>
-                        <phase>deploy</phase>
+                        <phase>install</phase>
                         <goals>
                             <goal>build</goal>
                             <goal>push</goal>
