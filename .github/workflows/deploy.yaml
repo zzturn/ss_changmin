@@ -22,7 +22,7 @@ jobs:
         run:
           mvn clean package -DskipTests=true -Dmaven.javadoc.skip=true -B -V
       - name: Find JAR file
-        run: echo "JAR_FILE=$(ls target/*.jar)" >> $GITHUB_ENV
+        run: echo "JAR_FILE=$(basename $(ls target/*.jar))" >> $GITHUB_ENV
       - name: Publish Docker
         uses: elgohr/Publish-Docker-Github-Action@v5
         with:
