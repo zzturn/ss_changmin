@@ -21,6 +21,8 @@ jobs:
       - name: Build with Maven
         run:
           mvn clean package -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+      - name: Find JAR file
+        run: echo "JAR_FILE=$(ls target/*.jar)" >> $GITHUB_ENV
       - name: Publish Docker
         uses: elgohr/Publish-Docker-Github-Action@v5
         with:
@@ -32,3 +34,4 @@ jobs:
           password: ${{secrets.DOCKER_PASSWORD}}
           tags: "cm_backend_github_latest"
           snapshot: true
+          buildargs: JAR_FILE=${{ env.JAR_FILE }}
