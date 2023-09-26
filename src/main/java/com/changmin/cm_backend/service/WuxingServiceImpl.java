@@ -3,6 +3,7 @@ package com.changmin.cm_backend.service;
 import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.changmin.cm_backend.config.common.pojo.PageResult;
+import com.changmin.cm_backend.config.mybatis.core.dataobject.BaseDO;
 import com.changmin.cm_backend.config.security.config.SecurityProperties;
 import com.changmin.cm_backend.config.security.util.SecurityFrameworkUtils;
 import com.changmin.cm_backend.exceptions.ErrorCodeConstants;
@@ -71,6 +72,13 @@ public class WuxingServiceImpl implements WuxingService {
     wuxingDO.setType(WuxingTypeEnum.CUSTOM.getValue());
     wuxingMapper.insert(wuxingDO);
     return wuxingDO.getId();
+  }
+
+  @Override
+  public void deleteSavedWuxing(List<String> ids) {
+    String userId = LoginUserUtil.getLoginUserIdOrElseThrow();
+    wuxingMapper.delete(
+        new LambdaQueryWrapper<WuxingDO>().in(WuxingDO::getId, ids).eq(BaseDO::getCreator, userId));
   }
 
   /**

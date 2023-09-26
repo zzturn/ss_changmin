@@ -11,7 +11,9 @@ public interface WuxingService {
 
   String saveWuxing(WuxingCreateReqDto dto);
 
-  List<WuxingItemDto> getSavedWuxingList();
+    void deleteSavedWuxing(List<String> id);
+
+    List<WuxingItemDto> getSavedWuxingList();
 
   void update(WuxingUpdateReqDto dto);
 

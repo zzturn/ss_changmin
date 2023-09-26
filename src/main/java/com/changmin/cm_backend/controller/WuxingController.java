@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 public class WuxingController {
   @Resource private WuxingService wuxingService;
 
-
   @ApiOperation(value = "根据 id 获取")
   @PermitAll
   @GetMapping("/{id}")
@@ -29,6 +28,13 @@ public class WuxingController {
   @PostMapping()
   public Resp<String> save(@Valid @RequestBody WuxingCreateReqDto dto) {
     return Resp.data(wuxingService.saveWuxing(dto));
+  }
+
+  @DeleteMapping()
+  @ApiOperation(value = "删除")
+  public Resp<Boolean> deleteSaved(@RequestBody List<String> ids) {
+    wuxingService.deleteSavedWuxing(ids);
+    return Resp.data(true);
   }
 
   @ApiOperation(value = "获取保存的屋形列表")
