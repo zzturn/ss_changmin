@@ -19,7 +19,7 @@ public class AuthRegisterReqVO {
   @ApiModelProperty(value = "手机号", required = true, example = "15800000000")
   @NotEmpty
   @Mobile
-  private String mobile;
+  private String phone;
 
   @ApiModelProperty(value = "密码", required = true, example = "666666")
   @NotEmpty

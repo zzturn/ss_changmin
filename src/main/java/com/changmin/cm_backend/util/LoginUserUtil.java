@@ -40,7 +40,7 @@ public class LoginUserUtil {
   public static LoginUser getLoginUserOrElseThrow() {
     LoginUser loginUser = getLoginUser();
     if (Objects.isNull(loginUser) || Objects.isNull(loginUser.getId())) {
-      throw new BusinessException("账号为登录");
+      throw new BusinessException("账号未登录");
     }
     return loginUser;
   }

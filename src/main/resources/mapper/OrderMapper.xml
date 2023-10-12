@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.changmin.cm_backend.mapper.OrderMapper">
+
+    <resultMap type="com.changmin.cm_backend.model.pojo.OrderDO" id="OrderMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="createTimeUtc" column="create_time_utc" jdbcType="TIMESTAMP"/>
+        <result property="updateTimeUtc" column="update_time_utc" jdbcType="TIMESTAMP"/>
+        <result property="creator" column="creator" jdbcType="VARCHAR"/>
+        <result property="updater" column="updater" jdbcType="VARCHAR"/>
+        <result property="deleted" column="deleted" jdbcType="BOOLEAN"/>
+        <result property="userId" column="user_id" jdbcType="VARCHAR"/>
+        <result property="type" column="type" jdbcType="VARCHAR"/>
+        <result property="state" column="state" jdbcType="VARCHAR"/>
+        <result property="wuxingId" column="wuxing_id" jdbcType="VARCHAR"/>
+        <result property="data" column="data" jdbcType="VARCHAR"/>
+        <result property="username" column="username" jdbcType="VARCHAR"/>
+        <result property="phone" column="phone" jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+    </resultMap>
+
+</mapper>
+
