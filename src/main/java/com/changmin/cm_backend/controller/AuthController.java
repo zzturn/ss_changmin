@@ -4,7 +4,7 @@ import com.changmin.cm_backend.config.common.pojo.Resp;
 import com.changmin.cm_backend.model.vo.AuthLoginRespVO;
 import com.changmin.cm_backend.model.vo.AuthMiniappLoginReqVO;
 import com.changmin.cm_backend.model.vo.AuthRegisterReqVO;
-import com.changmin.cm_backend.service.UserService;
+import com.changmin.cm_backend.service.AuthService;
 import io.swagger.annotations.Api;
 import javax.annotation.security.PermitAll;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +19,8 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class AuthController {
 
-  @Autowired UserService userService;
+  @Autowired
+  AuthService userService;
 
   @GetMapping("/validate")
   public Resp<String> get() {

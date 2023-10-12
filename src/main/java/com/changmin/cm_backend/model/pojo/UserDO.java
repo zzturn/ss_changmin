@@ -3,9 +3,8 @@ package com.changmin.cm_backend.model.pojo;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.util.Date;
-
 import com.changmin.cm_backend.config.mybatis.core.dataobject.BaseDO;
+import java.util.Date;
 import lombok.*;
 
 /**
@@ -42,7 +41,7 @@ public class UserDO extends BaseDO {
   private String email;
 
   // 手机号码
-  private String mobile;
+  private String phone;
 
   // 用户性别
   private String gender;
