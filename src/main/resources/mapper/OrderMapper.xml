@@ -18,6 +18,22 @@
         <result property="phone" column="phone" jdbcType="VARCHAR"/>
         <result property="email" column="email" jdbcType="VARCHAR"/>
     </resultMap>
+    
+    <resultMap id="UserWithOrderCountResultMap" type="com.changmin.cm_backend.model.pojo.UserWithOrderCountDO">
+        <id property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="phone" column="phone"/>
+        <result property="email" column="email"/>
+        <result property="reservedOrderCount" column="reserved_order_count"/>
+    </resultMap>
 
+    <select id="getUserWithOrderCount" resultMap="UserWithOrderCountResultMap">
+        SELECT u.id, u.username, u.phone, u.email, COUNT(*) as reserved_order_count
+        FROM "order" AS o
+                 LEFT JOIN "user" AS u ON o.user_id = u.id
+        WHERE o.state = 'RESERVED'
+        GROUP BY u.id
+        ORDER BY MAX(o.create_time_utc) DESC
+    </select>
 </mapper>
 

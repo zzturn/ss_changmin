@@ -1,10 +1,14 @@
 package com.changmin.cm_backend.controller;
 
+import com.changmin.cm_backend.config.common.pojo.PageResult;
 import com.changmin.cm_backend.config.common.pojo.Resp;
 import com.changmin.cm_backend.model.dto.user.UserBaseDto;
 import com.changmin.cm_backend.model.dto.user.UserUpdateReqDto;
+import com.changmin.cm_backend.model.dto.user.UserWithOrderCountDto;
+import com.changmin.cm_backend.model.dto.user.UserWithOrderCountPageReqDto;
 import com.changmin.cm_backend.service.UserService;
 import io.swagger.annotations.Api;
+import javax.annotation.security.PermitAll;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -28,5 +32,11 @@ public class UserController {
   @GetMapping("/get_myself")
   public Resp<UserBaseDto> getMyself() {
     return Resp.data(userService.getMyself());
+  }
+
+  @PermitAll
+  @PostMapping("/order_count")
+  public Resp<PageResult<UserWithOrderCountDto>> getListWithOrdersCount(UserWithOrderCountPageReqDto dto){
+    return Resp.data(userService.getListWithOrdersCount(dto));
   }
 }

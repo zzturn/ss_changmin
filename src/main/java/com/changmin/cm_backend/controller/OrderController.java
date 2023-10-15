@@ -50,7 +50,7 @@ public class OrderController {
     return Resp.ok();
   }
 
-//  @DeleteMapping("/delete/{id}")
+  @DeleteMapping("/delete/{id}")
   @ApiOperation(value = "删除")
   public Resp<Void> delete(@PathVariable(value = "id") Long id) {
     orderService.delete(id);
