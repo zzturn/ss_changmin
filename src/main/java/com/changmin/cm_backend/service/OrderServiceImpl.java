@@ -83,7 +83,9 @@ public class OrderServiceImpl implements OrderService {
 
   @Override
   public void delete(Long id) {
-    orderMapper.deleteById(id);
+    String userId = LoginUserUtil.getLoginUserIdOrElseThrow();
+    orderMapper.delete(
+        new LambdaQueryWrapper<OrderDO>().eq(OrderDO::getId, id).eq(OrderDO::getUserId, userId));
   }
 
   @Override
@@ -94,6 +96,8 @@ public class OrderServiceImpl implements OrderService {
             .like(Objects.nonNull(dto.getPhone()), OrderDO::getPhone, dto.getPhone())
             .like(Objects.nonNull(dto.getEmail()), OrderDO::getEmail, dto.getEmail())
             .eq(Objects.nonNull(dto.getState()), OrderDO::getState, dto.getState())
+            .eq(Objects.nonNull(dto.getUserId()), OrderDO::getUserId, dto.getUserId())
+            .eq(Objects.nonNull(dto.getType()), OrderDO::getType, dto.getType())
             .orderByDesc(OrderDO::getCreateTimeUtc);
 
     String userId = LoginUserUtil.getLoginUserId();

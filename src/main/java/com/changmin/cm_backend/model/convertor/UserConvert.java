@@ -1,6 +1,5 @@
 package com.changmin.cm_backend.model.convertor;
 
-
 import com.changmin.cm_backend.model.dto.user.*;
 import com.changmin.cm_backend.model.pojo.*;
 import java.util.*;
@@ -13,8 +12,7 @@ public interface UserConvert {
 
   UserBaseDto convertBase(UserDO bean);
 
-
   UserDO convert(UserUpdateReqDto bean);
-  
-}
 
+  List<UserWithOrderCountDto> convertList(List<UserWithOrderCountDO> list);
+}

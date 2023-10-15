@@ -129,7 +129,6 @@ public class WuxingServiceImpl implements WuxingService {
    */
   @Override
   public PageResult<WuxingItemDto> getPage(WuxingPageReqDto dto) {
-    // todo None 是作为一种类型还是不筛选？
     LambdaQueryWrapper<WuxingDO> queryWrapper =
         new LambdaQueryWrapper<WuxingDO>()
             .eq(WuxingDO::getType, WuxingTypeEnum.OFFICIAL.getValue())
@@ -148,6 +147,9 @@ public class WuxingServiceImpl implements WuxingService {
                 WuxingDO::getJianZhuTuMianUrl);
     if (Objects.nonNull(dto.getSortField())) {
       queryWrapper.orderBy(true, dto.getSortAsc(), dto.getSortField().getField());
+    }
+    if (dto.getIgnore3DData()) {
+      queryWrapper.select(WuxingDO.class, info -> !info.getColumn().equals("data"));
     }
     PageResult<WuxingDO> pageResult = wuxingMapper.selectPage(dto, queryWrapper);
     return new PageResult<>(
