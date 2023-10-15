@@ -87,14 +87,17 @@ public class WuxingServiceImpl implements WuxingService {
    * @return
    */
   @Override
-  public List<WuxingItemDto> getSavedWuxingList() {
+  public List<WuxingItemDto> getSavedWuxingList(WuxingListReqDto dto) {
     String userId = LoginUserUtil.getLoginUserIdOrElseThrow();
-    List<WuxingDO> wuxingDOS =
-        wuxingMapper.selectList(
-            new LambdaQueryWrapper<WuxingDO>()
-                .eq(WuxingDO::getCreator, userId)
-                .eq(WuxingDO::getType, WuxingTypeEnum.CUSTOM)
-                .orderByDesc(WuxingDO::getCreateTimeUtc));
+    LambdaQueryWrapper<WuxingDO> queryWrapper =
+        new LambdaQueryWrapper<WuxingDO>()
+            .eq(WuxingDO::getCreator, userId)
+            .eq(WuxingDO::getType, WuxingTypeEnum.CUSTOM)
+            .orderByDesc(WuxingDO::getCreateTimeUtc);
+    if (dto.getIgnore3DData()) {
+      queryWrapper.select(WuxingDO.class, info -> !info.getColumn().equals("data"));
+    }
+    List<WuxingDO> wuxingDOS = wuxingMapper.selectList(queryWrapper);
     List<WuxingItemDto> res = WuxingConvert.INSTANCE.convertList(wuxingDOS);
     return res;
   }

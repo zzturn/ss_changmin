@@ -13,7 +13,7 @@ public interface WuxingService {
 
     void deleteSavedWuxing(List<String> id);
 
-    List<WuxingItemDto> getSavedWuxingList();
+    List<WuxingItemDto> getSavedWuxingList(WuxingListReqDto dto);
 
   void update(WuxingUpdateReqDto dto);
 
