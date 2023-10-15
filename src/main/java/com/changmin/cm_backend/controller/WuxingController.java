@@ -38,9 +38,9 @@ public class WuxingController {
   }
 
   @ApiOperation(value = "获取保存的屋形列表")
-  @GetMapping()
-  public Resp<List<WuxingItemDto>> getSavedList() {
-    return Resp.data(wuxingService.getSavedWuxingList());
+  @PostMapping("/list")
+  public Resp<List<WuxingItemDto>> getSavedList(@RequestBody WuxingListReqDto dto) {
+    return Resp.data(wuxingService.getSavedWuxingList(dto));
   }
 
   @ApiOperation(value = "批量上传")
