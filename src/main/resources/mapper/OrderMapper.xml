@@ -18,7 +18,7 @@
         <result property="phone" column="phone" jdbcType="VARCHAR"/>
         <result property="email" column="email" jdbcType="VARCHAR"/>
     </resultMap>
-    
+
     <resultMap id="UserWithOrderCountResultMap" type="com.changmin.cm_backend.model.pojo.UserWithOrderCountDO">
         <id property="id" column="id"/>
         <result property="username" column="username"/>
@@ -32,6 +32,7 @@
         FROM "order" AS o
                  LEFT JOIN "user" AS u ON o.user_id = u.id
         WHERE o.state = 'RESERVED'
+          AND o.deleted = 'false'
         GROUP BY u.id
         ORDER BY MAX(o.create_time_utc) DESC
     </select>
