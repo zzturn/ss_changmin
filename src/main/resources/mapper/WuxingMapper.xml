@@ -19,6 +19,11 @@
         <result property="roomCount" column="room_count" jdbcType="VARCHAR"/>
         <result property="canCustom" column="can_custom" jdbcType="BOOLEAN"/>
     </resultMap>
-
+    
+    <select id="selectWuxingById" resultMap="WuxingMap">
+        SELECT *
+        FROM wuxing
+        WHERE id = #{id}
+    </select>
 </mapper>
 
