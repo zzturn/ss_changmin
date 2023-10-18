@@ -36,7 +36,7 @@ public class WuxingServiceImpl implements WuxingService {
    */
   @Override
   public WuxingItemDto get(String id) {
-    return WuxingConvert.INSTANCE.convertItem(wuxingMapper.selectById(id));
+    return WuxingConvert.INSTANCE.convertItem(wuxingMapper.selectWuxingById(id));
   }
 
   /**
