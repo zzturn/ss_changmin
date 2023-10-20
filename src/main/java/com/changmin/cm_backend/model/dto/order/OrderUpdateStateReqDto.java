@@ -14,6 +14,5 @@ public class OrderUpdateStateReqDto {
   private Long id;
 
   @ApiModelProperty(value = "订单状态")
-  @NotNull
   private OrderStateEnum state;
 }

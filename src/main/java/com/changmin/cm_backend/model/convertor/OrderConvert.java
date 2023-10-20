@@ -18,7 +18,9 @@ public interface OrderConvert {
   OrderDO convert(OrderCreateReqDto bean);
 
   OrderDO convert(OrderUpdateStateReqDto bean);
-  
+
+  OrderDO convert(OrderUpdateByAdminReqDto bean);
+
   List<OrderItemDto> convertList(List<OrderDO> list);
 }
 
