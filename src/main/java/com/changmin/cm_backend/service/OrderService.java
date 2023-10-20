@@ -10,7 +10,7 @@ public interface OrderService {
 
   void update(OrderUpdateStateReqDto dto);
 
-  void updateByAdmin(OrderUpdateStateReqDto dto);
+  void updateByAdmin(OrderUpdateByAdminReqDto dto);
 
   void delete(Long id);
 

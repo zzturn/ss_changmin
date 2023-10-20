@@ -70,7 +70,7 @@ public class OrderServiceImpl implements OrderService {
   }
 
   @Override
-  public void updateByAdmin(OrderUpdateStateReqDto dto) {
+  public void updateByAdmin(OrderUpdateByAdminReqDto dto) {
     String token =
         SecurityFrameworkUtils.obtainAuthorization(
             Objects.requireNonNull(WebFrameworkUtils.getRequest(), "Request cannot be null"),

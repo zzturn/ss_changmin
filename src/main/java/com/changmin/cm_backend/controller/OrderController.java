@@ -45,7 +45,7 @@ public class OrderController {
   @PutMapping("/admin/update")
   @PermitAll
   @ApiOperation(value = "管理员修改订单")
-  public Resp<Void> updateByAdmin(@Valid @RequestBody OrderUpdateStateReqDto dto) {
+  public Resp<Void> updateByAdmin(@Valid @RequestBody OrderUpdateByAdminReqDto dto) {
     orderService.updateByAdmin(dto);
     return Resp.ok();
   }
